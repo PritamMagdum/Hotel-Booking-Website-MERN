@@ -5,6 +5,7 @@ import {
   createHotel,
   deleteHotel,
   getHotel,
+  getHotels,
   updateHotel,
 } from "../controllers/hotel.js";
 
@@ -22,13 +23,6 @@ router.delete("/:id", deleteHotel);
 router.get("/:id", getHotel);
 
 // get all
-router.get("/", async (req, res, next) => {
-  try {
-    const Hotels = await Hotel.find();
-    res.status(200).json(Hotels);
-  } catch (err) {
-    next(err);
-  }
-});
+router.get("/", getHotels);
 
 export default router;
