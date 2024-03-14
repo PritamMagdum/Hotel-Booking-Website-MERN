@@ -1,20 +1,11 @@
 import express from "express";
 import Hotel from "../models/Hotel.js";
+import { createError } from "../utils/error.js";
+import { createHotel } from "../controllers/hotel.js";
 
 const router = express.Router();
 // create
-router.post("/", async (req, res) => {
-  // console.log("req is-->", req);
-  const newHotel = new Hotel(req.body);
-
-  try {
-    const savedHotel = await newHotel.save();
-    res.status(200).json(savedHotel);
-  } catch (err) {
-    // console.log(err);
-    res.status(500).json(err);
-  }
-});
+router.post("/", createHotel);
 
 // update
 router.put("/:id", async (req, res) => {
@@ -53,12 +44,12 @@ router.get("/:id", async (req, res) => {
 });
 
 // get all
-router.get("/", async (req, res) => {
+router.get("/", async (req, res, next) => {
   try {
     const Hotels = await Hotel.find();
     res.status(200).json(Hotels);
   } catch (err) {
-    res.status(500).json(err);
+    next(err);
   }
 });
 
