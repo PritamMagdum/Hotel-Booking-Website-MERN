@@ -30,3 +30,14 @@ export const deleteHotel = async (req, res, next) => {
     next(err);
   }
 };
+
+export const getHotel = async (req, res, next) => {
+  try {
+    // console.log(req.params.id);
+    const hotel = await Hotel.findById(req.params.id);
+    // console.log("Hotel -->", hotel);
+    res.status(200).json(hotel);
+  } catch (err) {
+    next(err);
+  }
+};
