@@ -24,12 +24,13 @@ const useFetch = (url) => {
     setLoading(true);
     try {
       const res = await axios.get(url);
-      setData(res);
+      setData(res.data);
     } catch (error) {
       setError(error);
     }
     setLoading(false);
   };
+
   return { data, loading, error, reFetch };
 };
 
