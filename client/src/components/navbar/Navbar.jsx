@@ -10,7 +10,7 @@ const Navbar = () => {
     <div className="navbar">
       <div className="navContainer">
         <Link to="/" style={{ color: "white", textDecoration: "none" }}>
-          <span className="logo">lamabooking</span>
+          <span className="logo">Magdum Booking</span>
         </Link>
         {user ? (
           user.username
